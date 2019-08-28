@@ -1,0 +1,17 @@
+[package]
+name = "tvheadproxy"
+version = "0.1.0"
+authors = ["Simon Dickson <simonhdickson@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+handlebars = "2.0"
+reqwest = "=0.9.17"
+pretty_env_logger = "0.3"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+structopt = "0.2"
+url = "2.1"
+warp = "0.1"
