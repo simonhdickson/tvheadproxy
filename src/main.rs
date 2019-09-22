@@ -2,6 +2,7 @@ use std::env;
 use std::error::Error;
 
 use handlebars::Handlebars;
+use log::debug;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use structopt::StructOpt;
@@ -46,6 +47,14 @@ struct Opt {
         default_value = "300"
     )]
     tv_weight: i32,
+
+    #[structopt(
+        short = "o",
+        env = "PORT",
+        long = "port",
+        default_value = "5004"
+    )]
+    port: u16,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -85,6 +94,8 @@ fn main() {
     pretty_env_logger::init();
     
     let opt = Opt::from_args();
+
+    debug!("using config: {:?}", opt);
 
     let discover_data = json!({
         "FriendlyName": "tvheadproxy",
@@ -136,6 +147,7 @@ fn main() {
         .set_password(opt.tvh_pass.as_ref().map(|x| &**x))
         .unwrap();
     let tvh_url = tvh_url.to_string();
+    let proxy_port = opt.port;
 
     let lineup_json = path!("lineup.json").map(move || {
         let res: ChannelResponse = client.get(&format!(
@@ -167,5 +179,5 @@ fn main() {
 
     let routes = discover_json.or(discover_xml).or(lineup_status).or(lineup_json).or(lineup_post);
 
-    warp::serve(routes.with(warp::log("tvheadproxy"))).run(([0, 0, 0, 0], 5004));
+    warp::serve(routes.with(warp::log("tvheadproxy"))).run(([0, 0, 0, 0], proxy_port));
 }
