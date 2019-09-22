@@ -48,12 +48,7 @@ struct Opt {
     )]
     tv_weight: i32,
 
-    #[structopt(
-        short = "o",
-        env = "PORT",
-        long = "port",
-        default_value = "5004"
-    )]
+    #[structopt(short = "o", env = "PORT", long = "port", default_value = "5004")]
     port: u16,
 }
 
@@ -92,7 +87,7 @@ fn main() {
         env::set_var("RUST_LOG", "tvheadproxy=info");
     }
     pretty_env_logger::init();
-    
+
     let opt = Opt::from_args();
 
     debug!("using config: {:?}", opt);
@@ -177,7 +172,11 @@ fn main() {
 
     let lineup_post = path!("lineup.post").map(|| "".to_owned());
 
-    let routes = discover_json.or(discover_xml).or(lineup_status).or(lineup_json).or(lineup_post);
+    let routes = discover_json
+        .or(discover_xml)
+        .or(lineup_status)
+        .or(lineup_json)
+        .or(lineup_post);
 
     warp::serve(routes.with(warp::log("tvheadproxy"))).run(([0, 0, 0, 0], proxy_port));
 }
