@@ -22,4 +22,6 @@ RUN chown tvheadproxy:tvheadproxy tvheadproxy
 
 USER tvheadproxy
 
-CMD ["./tvheadproxy"]
+EXPOSE 5004
+
+ENTRYPOINT ["./tvheadproxy"]
