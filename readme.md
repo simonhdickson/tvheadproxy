@@ -4,10 +4,17 @@ The app proxies tvheadend so that it can be used with Plex DVR.
 
 ## Installation
 
+Examples assume you ave the following:
+
+- User on `tvheadend` called `livetvh` with password `mypassword`.
+- Your `tvheadened` web interface is on `192.168.1.10:9981`.
+- The machine you're running this on has IP address `192.168.1.10` and port `5004` is free.
+
 ### Local
 
 ```bash
-cargo install --git https://github.com/simonhdickson/tvheadproxy 
+cargo install --git https://github.com/simonhdickson/tvheadproxy
+tvheadproxy -h "http://192.168.1.10:5004" -t "http://192.168.1.10:9981" -u "livetvh" -p "mypassword"
 ```
 
 ### Docker
@@ -15,8 +22,10 @@ cargo install --git https://github.com/simonhdickson/tvheadproxy
 Example:
 
 ```bash
-docker run -it tvheadproxy -h "http://192.168.1.10:5004" -t "http://192.168.1.10:9981" -u "livetvh" -p "mypassword"
+docker run -dit -p 5004:5004 simonhdickson/tvheadproxy -h "http://192.168.1.10:5004" -t "http://192.168.1.10:9981" -u "livetvh" -p "mypassword"
 ```
+
+Then in Plex go to `Settings/Live TV PVR` click `Add Device` and type `http://192.168.1.10:5004`
 
 ## Help
 
