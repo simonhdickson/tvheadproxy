@@ -2,6 +2,14 @@
 name = "tvheadproxy"
 version = "0.1.0"
 authors = ["Simon Dickson <simonhdickson@users.noreply.github.com>"]
+description = """
+tvheadproxy is an app that proxies tvheadend so it can be used with Plex DVR.
+"""
+documentation = "https://github.com/simonhdickson/tvheadproxy"
+homepage = "https://github.com/simonhdickson/tvheadproxy"
+repository = "https://github.com/simonhdickson/tvheadproxy"
+readme = "readme.md"
+license = "MIT"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

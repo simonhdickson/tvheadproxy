@@ -13,7 +13,7 @@ Examples assume you ave the following:
 ### Local
 
 ```bash
-cargo install --git https://github.com/simonhdickson/tvheadproxy
+cargo install tvheadproxy // add -f to update
 tvheadproxy -h "http://192.168.1.10:5004" -t "http://192.168.1.10:9981" -u "livetvh" -p "mypassword"
 ```
 
