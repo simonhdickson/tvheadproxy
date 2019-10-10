@@ -1,5 +1,7 @@
 # tvheadproxy
 
+[![Build Status](https://travis-ci.org/simonhdickson/tvheadproxy.svg?branch=master)](https://travis-ci.org/simonhdickson/tvheadproxy) ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/simonhdickson/tvheadproxy)
+
 The app proxies tvheadend so that it can be used with Plex DVR.
 
 ## Installation
